@@ -17,7 +17,7 @@ pipeline {
         stage('Build Docker image') {
             steps {
                 script {
-                    docker.build("${DOCKER_IMAGE_NAME}:1.2")
+                    docker.build("${DOCKER_IMAGE_NAME}:1.3")
                 }
             }
         }
@@ -32,7 +32,7 @@ pipeline {
 
        stage('Push Image to Docker Hub') {         
             steps{       
-                 sh 'docker push ${DOCKER_IMAGE_NAME}:1.2'           
+                 sh 'docker push ${DOCKER_IMAGE_NAME}:1.3'           
                  echo 'Push Image Completed'       
             }            
         }  
