@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_CREDENTIALS = credentials('dockerhub_id')
+        DOCKER_CREDENTIALS = credentials('dockerhub-credentials')
         DOCKER_IMAGE_NAME = 'nessmahm/hello-app'
     }
 
