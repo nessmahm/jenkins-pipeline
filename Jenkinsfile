@@ -21,15 +21,20 @@ pipeline {
                 }
             }
         }
-
-        stage('Push to DockerHub') {
-            steps {
-                script {
-                    docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIALS) {
-                        docker.image("${DOCKER_IMAGE_NAME}:1.2").push()
-                    }
-                }
+        stage('Login to Docker Hub') {      	
+            steps{  
+                withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
+        	    sh 'docker login -u nessmahm -p ${dockerhubpwd}'
+                echo 'Login Completed'     
+             } 
             }
         }
+
+       stage('Push Image to Docker Hub') {         
+            steps{       
+                 sh 'docker push ${DOCKER_IMAGE_NAME}:1.2'           
+                 echo 'Push Image Completed'       
+            }            
+        }  
     }
 }
