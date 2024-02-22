@@ -9,7 +9,8 @@ pipeline {
     stages {
         stage('Pull from GitHub') {
             steps {
-                git 'https://github.com/nessmahm/jenkins-pipeline.git'
+                   git branch: 'main', url: 'https://github.com/nessmahm/jenkins-pipeline.git'
+
             }
         }
 
